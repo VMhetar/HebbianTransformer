@@ -17,7 +17,7 @@ class HebbianLayer(nn.Module):
 
     def forward(self, x):
         return F.linear(x, self.weight)
-    def oja_update(self, pre, post,decay_rate):
+    def oja_update(self, pre, post):
         """
         pre: (batch, in_features)
         post: (batch, out_features)
@@ -29,3 +29,4 @@ class HebbianLayer(nn.Module):
         decay_term = y_squared.t() * self.weight
         delta_w = self.lr * (hebb_term - decay_term)
         self.weight.data += delta_w
+
